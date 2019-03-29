@@ -1,49 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {
+    View,
+    StatusBar,
+    StyleSheet,
+    Button
+} from 'react-native';
+import {
+    createStackNavigator,
+    createAppContainer,
+    createSwitchNavigator
+} from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Screen from "./src/utils/Screen";
+import Theme from "./src/utils/Theme";
+import SplashPage from "./src/pages/SplashPage";
+import LoginPage from "./src/pages/LoginPage";
+import mainPageTabNavigator from "./src/pages/mainPageTabNavigator";
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.OutmostView}>
+                <StatusBar animated={true} backgroundColor={Theme.themeColorLight} translucent={true} barStyle={'light-content'}/>
+                <AppContainer/>
+            </View>
+        );
+    }
 }
 
+const AppStackNavigator = createSwitchNavigator(
+    {
+        Splash: SplashPage,
+        Login: LoginPage,
+        Main: mainPageTabNavigator,
+    },
+    {
+        initialRouteName: "Splash",
+        // initialRouteName: "Main",// 调试用
+        defaultNavigationOptions: ({navigation}) => {
+            return {
+                headerStyle: {
+                    height: 0 * Screen.height,
+                },
+                headerLeft: (<View/>)
+            };
+        }
+    }
+);
+
+const AppContainer = createAppContainer(AppStackNavigator);
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    OutmostView: {
+        height: Screen.height - Screen.STATUSBAR_HEIGHT,
+        marginTop: Screen.STATUSBAR_HEIGHT
+    },
 });

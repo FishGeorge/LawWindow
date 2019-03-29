@@ -1,0 +1,9 @@
+export default {
+    swiper1: require("./exampleImg/swiper1.jpg"),
+    swiper2: require("./exampleImg/swiper2.jpg"),
+    swiper3: require("./exampleImg/swiper3.jpg"),
+    hotIssue1: require("./exampleImg/issue1.jpg"),
+    hotIssue2: require("./exampleImg/issue2.jpg"),
+    hotIssue3: require("./exampleImg/issue3.jpg"),
+    hotIssue4: require("./exampleImg/issue4.jpg")
+}
