@@ -62,7 +62,7 @@ export default class NewsPage extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8}>
                     <View style={styles.detailView}>
-                        <Text style={styles.detailTxt}>{"法窗ID"}</Text>
+                        <Text style={styles.detailTxt}>{"账号ID"}</Text>
                         <Text style={[styles.infoTxt, {right: 0.035 * Screen.width}]}>{"80000001"}</Text>
                     </View>
                 </TouchableOpacity>

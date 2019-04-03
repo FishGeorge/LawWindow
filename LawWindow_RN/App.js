@@ -15,7 +15,7 @@ import Screen from "./src/utils/Screen";
 import Theme from "./src/utils/Theme";
 import SplashPage from "./src/pages/SplashPage";
 import LoginPage from "./src/pages/LoginPage";
-import mainPageTabNavigator from "./src/pages/mainPageTabNavigator";
+import MainPageTabNavigator from "./src/pages/MainPageTabNavigator";
 
 export default class App extends Component {
     constructor(props) {
@@ -36,11 +36,11 @@ const AppStackNavigator = createSwitchNavigator(
     {
         Splash: SplashPage,
         Login: LoginPage,
-        Main: mainPageTabNavigator,
+        Main: MainPageTabNavigator,
     },
     {
-        initialRouteName: "Splash",
-        // initialRouteName: "Main",// 调试用
+        // initialRouteName: "Splash",
+        initialRouteName: "Main",// 调试用
         defaultNavigationOptions: ({navigation}) => {
             return {
                 headerStyle: {

@@ -14,7 +14,7 @@ import Screen from "../utils/Screen";
 import Theme from "../utils/Theme";
 import Swiper from 'react-native-swiper';
 import imgArr from "../img/imgArr";
-import newSwiper from "../txt/newSwiper"
+import newSwiper from "../txt/newsSwiper"
 import hotIssues from "../txt/hotIssues";
 //引入大段文字会报错？
 
@@ -240,11 +240,11 @@ const styles = StyleSheet.create({
         height: 0.045 * Screen.height,
         // width: 0.25 * Screen.width,
         marginTop: 0.01 * Screen.height,
-        marginBottom: 0.018 * Screen.height,
+        // marginBottom: 0.005 * Screen.height,
         marginLeft: 0.04 * Screen.width,
         marginRight: 0.04 * Screen.width,
         justifyContent: 'center',
-        // borderWidth: 1
+        borderBottomWidth: 1
     },
     hotIssueTxt: {
         fontSize: 24,
@@ -272,6 +272,8 @@ const styles = StyleSheet.create({
     },
     separator: {
         height: 1,
-        backgroundColor: '#dddddd'
+        backgroundColor: '#dddddd',
+        marginLeft: 0.04 * Screen.width,
+        marginRight: 0.04 * Screen.width,
     }
 });

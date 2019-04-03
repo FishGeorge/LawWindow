@@ -70,7 +70,7 @@ export default class SplashPage extends Component {
                         <Text style={{fontSize: 28, fontWeight: 'bold', color: Theme.themeColor}}>法窗</Text>
                         <Text style={{fontSize: 13}}>扣开时代之窗</Text>
                     </View>
-                    <Text style={styles.infoBottom}>{"Copy right @ 东南大学法学院  Ver 0.1.1"}</Text>
+                    <Text style={styles.infoBottom}>{"Copy right @ 东南大学法学院  Ver 0.1.2"}</Text>
                 </View>
                 <TouchableOpacity onPress={() => this._pressSkip()} style={styles.btn}>
                     <Text style={styles.btnText}>{"跳过 " + this.state.time}</Text>

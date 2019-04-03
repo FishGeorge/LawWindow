@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {
     View,
+    ScrollView,
     Text,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ProgressBarAndroid
 } from 'react-native';
 import Screen from "../utils/Screen";
 import Theme from "../utils/Theme"
@@ -43,37 +45,15 @@ export default class StudyMainPage extends Component {
 
     render() {
         return (
-            <View style={styles.studyPageView}>
-                <View style={styles.statisticsView}>
-                    <Text style={[styles.statisticsTxt,{marginLeft:0.03*Screen.width}]}>{"打卡统计"}</Text>
-                    <Text style={[styles.statisticsTxt,{position:'absolute',right:0.25*Screen.width,marginRight:0.03*Screen.width}]}>{this._getContinuousRecord()}</Text>
-                    <Text style={[styles.statisticsTxt,{position:'absolute',right:0,marginRight:0.03*Screen.width}]}>{this._getCumulativeRecord()}</Text>
+            <ScrollView contentContainerStyle={styles.studyPageView}>
+                <View style={styles.practiceView}>
+                    <Text style={styles.practiceTxt}>法窗测试</Text>
                 </View>
                 <Calendar
                     // Specify style for calendar container element. Default = {}
                     style={styles.calendarView}
                     // Specify theme properties to override specific styles for calendar parts. Default = {}
-                    theme={{
-                        backgroundColor: '#ffffff',
-                        calendarBackground: '#ffffff',
-                        textSectionTitleColor: '#a2adb9',
-                        selectedDayBackgroundColor: '#00adf5',
-                        selectedDayTextColor: '#ffffff',
-                        todayTextColor: '#00adf5',
-                        dayTextColor: '#2d4150',
-                        textDisabledColor: '#cdd5dc',
-                        dotColor: '#00adf5',
-                        selectedDotColor: '#ffffff',
-                        arrowColor: Theme.themeColor,
-                        monthTextColor: '#000000',
-                        textDayFontFamily: 'monospace',
-                        textMonthFontFamily: 'monospace',
-                        textDayHeaderFontFamily: 'monospace',
-                        // textMonthFontWeight: 'bold',
-                        textDayFontSize: 16,
-                        textMonthFontSize: 16,
-                        textDayHeaderFontSize: 16
-                    }}
+                    theme={calendarTheme}
                     // Initially visible month. Default = Date()
                     // current={'2012-03-01'}
                     // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
@@ -111,21 +91,78 @@ export default class StudyMainPage extends Component {
                     markingType={'custom'}
                     markedDates={this._getMarkedDates()}
                 />
-                <TouchableOpacity activeOpacity={0.8} onPress={this._onStudyBtnClicked}>
+                {/*<View style={styles.statisticsView}>*/}
+                {/*<Text style={[styles.statisticsTxt, {marginLeft: 0.03 * Screen.width}]}>{"打卡统计"}</Text>*/}
+                {/*</View>*/}
+                <View style={styles.progressView}>
+                    <Text style={styles.statisticsTxt}>{"掌握程度 " + this._getFinishedEx()[0]}</Text>
+                    <Text style={[styles.statisticsTxt, {
+                        position: 'absolute',
+                        right: 0.25 * Screen.width
+                    }]}>{this._getContinuousRecord()}</Text>
+                    <Text style={[styles.statisticsTxt, {
+                        position: 'absolute',
+                        right: 0,
+                    }]}>{this._getCumulativeRecord()}</Text>
+                </View>
+                <ProgressBarAndroid
+                    styleAttr="Horizontal"
+                    indeterminate={false}
+                    progress={this._getFinishedEx()[1]}
+                    color={Theme.themeColor}
+                    style={{width: 0.85 * Screen.width}}
+                />
+                {/*<View style={styles.progressView}>*/}
+                {/*<View style={styles.circleView}>*/}
+                {/*<Text style={styles.progressTxt}>总做题量</Text>*/}
+                {/*<Text style={styles.progressNumTxt}>{this._getFinishedEx()[0]}</Text>*/}
+                {/*</View>*/}
+                {/*<View style={styles.circleView}>*/}
+                {/*</View>*/}
+                {/*<View style={styles.circleView}>*/}
+                {/*<Text style={styles.progressTxt}>正确率</Text>*/}
+                {/*<Text style={styles.progressNumTxt}>{this._getFinishedEx()[0]}</Text>*/}
+                {/*</View>*/}
+                {/*</View>*/}
+                <View style={styles.mediaView}>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>
+                        <View style={styles.mediaBtn}>
+                            <Text style={{fontSize: 20, color: '#000000',}}>{"电影"}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.mediaViewSeparator}/>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>
+                        <View style={styles.mediaBtn}>
+                            <Text style={{fontSize: 20, color: '#000000',}}>{"书籍"}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.mediaViewSeparator}/>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>
+                        <View style={styles.mediaBtn}>
+                            <Text style={{fontSize: 20, color: '#000000',}}>{"音乐"}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={{position: 'absolute', bottom: 0.02 * Screen.height}} activeOpacity={0.8}
+                                  onPress={this._onStudyBtnClicked}>
                     <View style={styles.studyBtn}>
                         <Text style={{fontSize: 20, color: '#ffffff',}}>{"今日打卡"}</Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         );
     };
 
     _getContinuousRecord = () => {
-        return "连续 "+1+" 天";
+        return "连续 " + 1 + " 天";
     };
 
     _getCumulativeRecord = () => {
-        return "累积 "+1+" 天";
+        return "累积 " + 1 + " 天";
+    };
+
+    _getFinishedEx = () => {
+        return [35 + "/" + 170, 35 / 170];
     };
 
     _getMarkedDates = () => {
@@ -155,6 +192,23 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
+    practiceView: {
+        width: 0.92 * Screen.width,
+        height: 0.045 * Screen.height,
+        marginTop: 0.01 * Screen.height,
+        justifyContent: 'center',
+        borderBottomWidth: 1
+    },
+    practiceTxt: {
+        fontSize: 24,
+        color: '#000000'
+    },
+    calendarView: {
+        // height: 0.3*Screen.height,
+        width: 0.94 * Screen.width,
+        // marginTop: 0.04 * Screen.height,
+        borderBottomWidth: 1
+    },
     settingsBtn: {
         height: 0.04 * Screen.height,
         width: 0.2 * Screen.width,
@@ -162,30 +216,104 @@ const styles = StyleSheet.create({
         tintColor: '#000000',
     },
     statisticsView: {
-        marginTop:0.04 * Screen.height,
-        flexDirection:'row',
-        width: 0.94 * Screen.width,
+        marginTop: 0.01 * Screen.height,
+        flexDirection: 'row',
+        width: 0.92 * Screen.width,
         // borderWidth: 1
     },
-    statisticsTxt:{
-        width:0.25*Screen.width,
-        fontSize:18,
-        color:'#000000',
-        // borderWidth: 1
+    statisticsTxt: {
+        // width: 0.25 * Screen.width,
+        fontSize: 18,
+        color: '#000000',
+        // borderWidth: 1,
     },
-    calendarView: {
-        // height: 0.3*Screen.height,
-        width: 0.94 * Screen.width,
-        marginTop:0.04 * Screen.height,
-        // borderWidth: 1
+    progressView: {
+        width: 0.9 * Screen.width,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginTop: 0.01 * Screen.height,
+    },
+    circleView: {
+        height: 0.26 * Screen.width,
+        width: 0.26 * Screen.width,
+        borderRadius: 0.13 * Screen.width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2
+    },
+    progressTxt: {
+        fontSize: 16,
+        color: '#000000',
+    },
+    progressNumTxt: {
+        fontSize: 16,
+        color: '#000000',
+    },
+    mediaView: {
+        marginTop: 0.02 * Screen.height,
+        width: 0.92 * Screen.width,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    mediaBtn: {
+        height: 0.28 * Screen.width,
+        width: 0.28 * Screen.width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // borderWidth: 1,
+    },
+    mediaViewSeparator: {
+        width: 1,
+        height: 0.2 * Screen.width,
+        backgroundColor: '#dddddd',
     },
     studyBtn: {
         height: 0.07 * Screen.height,
         width: 0.8 * Screen.width,
-        marginTop:0.04 * Screen.height,
+        marginTop: 0.01 * Screen.height,
         borderRadius: 0.015 * Screen.height,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Theme.themeColor,
+        // borderWidth: 1,
     }
 });
+
+const calendarTheme = {
+    backgroundColor: '#ffffff',
+    calendarBackground: '#ffffff',
+    textSectionTitleColor: '#a2adb9',
+    selectedDayBackgroundColor: '#00adf5',
+    selectedDayTextColor: '#ffffff',
+    todayTextColor: '#00adf5',
+    dayTextColor: '#2d4150',
+    textDisabledColor: '#cdd5dc',
+    dotColor: '#00adf5',
+    selectedDotColor: '#ffffff',
+    arrowColor: Theme.themeColor,
+    monthTextColor: '#000000',
+    textDayFontFamily: 'monospace',
+    textMonthFontFamily: 'monospace',
+    textDayHeaderFontFamily: 'monospace',
+    // textMonthFontWeight: 'bold',
+    textDayFontSize: 16,
+    textMonthFontSize: 16,
+    textDayHeaderFontSize: 16,
+    'stylesheet.calendar.header': {
+        week: {
+            marginTop: 0,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            // borderWidth: 1
+        },
+    },
+    'stylesheet.calendar.main': {
+        week: {
+            marginTop: 1,
+            marginBottom: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-around'
+        }
+    }
+};

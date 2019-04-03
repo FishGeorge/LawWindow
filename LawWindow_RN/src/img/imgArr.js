@@ -5,5 +5,8 @@ export default {
     hotIssue1: require("./exampleImg/issue1.jpg"),
     hotIssue2: require("./exampleImg/issue2.jpg"),
     hotIssue3: require("./exampleImg/issue3.jpg"),
-    hotIssue4: require("./exampleImg/issue4.jpg")
+    hotIssue4: require("./exampleImg/issue4.jpg"),
+    headImg1: require("./exampleImg/headImg.jpg"),
+    headImg2: require("./exampleImg/swiper3.jpg"),
+    headImg3: require("./exampleImg/swiper3.jpg"),
 }
