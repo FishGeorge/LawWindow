@@ -15,7 +15,7 @@ import Screen from "./src/utils/Screen";
 import Theme from "./src/utils/Theme";
 import SplashPage from "./src/pages/SplashPage";
 import LoginPage from "./src/pages/LoginPage";
-import MainPageTabNavigator from "./src/pages/MainPageTabNavigator";
+import MainPageTabNavigator from "./src/pages/MainTabNavigator";
 
 export default class App extends Component {
     constructor(props) {

@@ -124,25 +124,19 @@ export default class StudyMainPage extends Component {
                 {/*<Text style={styles.progressNumTxt}>{this._getFinishedEx()[0]}</Text>*/}
                 {/*</View>*/}
                 {/*</View>*/}
-                <View style={styles.mediaView}>
-                    <TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>
-                        <View style={styles.mediaBtn}>
-                            <Text style={{fontSize: 20, color: '#000000',}}>{"电影"}</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={styles.mediaViewSeparator}/>
-                    <TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>
-                        <View style={styles.mediaBtn}>
-                            <Text style={{fontSize: 20, color: '#000000',}}>{"书籍"}</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={styles.mediaViewSeparator}/>
-                    <TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>
-                        <View style={styles.mediaBtn}>
-                            <Text style={{fontSize: 20, color: '#000000',}}>{"音乐"}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                {/*<View style={styles.mediaView}>*/}
+                    {/*<TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>*/}
+                        {/*<View style={styles.mediaBtn}>*/}
+                            {/*<Text style={{fontSize: 20, color: '#000000',}}>{"电影书籍"}</Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*<View style={styles.mediaViewSeparator}/>*/}
+                    {/*<TouchableOpacity activeOpacity={0.8} onPress={this._onBookBtnClicked}>*/}
+                        {/*<View style={styles.mediaBtn}>*/}
+                            {/*<Text style={{fontSize: 20, color: '#000000',}}>{"书籍"}</Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                {/*</View>*/}
                 <TouchableOpacity style={{position: 'absolute', bottom: 0.02 * Screen.height}} activeOpacity={0.8}
                                   onPress={this._onStudyBtnClicked}>
                     <View style={styles.studyBtn}>
@@ -181,6 +175,14 @@ export default class StudyMainPage extends Component {
             '2019-03-29': dotStyle,
         }
     };
+
+    // _onFilmBtnClicked=()=>{
+    //     this.props.navigation.navigate("StudyMediaTabNavigator",{initialRouteName:"Film"});
+    // };
+    //
+    // _onBookBtnClicked=()=>{
+    //     this.props.navigation.navigate("StudyMediaTabNavigator",{initialRouteName:"Book"});
+    // };
 
     _onStudyBtnClicked = () => {
 
@@ -251,9 +253,9 @@ const styles = StyleSheet.create({
     },
     mediaView: {
         marginTop: 0.02 * Screen.height,
-        width: 0.92 * Screen.width,
+        width: 0.86 * Screen.width,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center'
     },
     mediaBtn: {

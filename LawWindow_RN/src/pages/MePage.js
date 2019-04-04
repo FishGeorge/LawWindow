@@ -15,7 +15,15 @@ export default class NewsPage extends Component {
             title: '我的',
             headerStyle: {
                 height: 0.065 * Screen.height,
+                elevation: 0,
             },
+            headerRight: (
+                <Image
+                    style={styles.settingsBtn}
+                    resizeMode='contain'
+                    source={require('../img/icon/more_light.png')}
+                />
+            ),
         };
     };
 
@@ -33,7 +41,7 @@ export default class NewsPage extends Component {
                         <Image
                             style={styles.headImg}
                             resizeMode='stretch'
-                            source={require('../img/exampleImg/headImg.jpg')}/>
+                            source={require('../img/exampleImg/headImg1.jpg')}/>
                         <Image
                             style={styles.detailBtn}
                             resizeMode='stretch'
@@ -91,6 +99,12 @@ export default class NewsPage extends Component {
 }
 
 const styles = StyleSheet.create({
+    settingsBtn: {
+        height: 0.04 * Screen.height,
+        width: 0.2 * Screen.width,
+        // tintColor: '#b9b9b9',
+        tintColor: '#000000',
+    },
     mePageView: {
         flex: 1,
         backgroundColor: "#eeeeee",

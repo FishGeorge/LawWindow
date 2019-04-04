@@ -18,15 +18,15 @@ export default class IssueDetailPage extends Component {
                 height: 0.065 * Screen.height,
             },
             title: '热点追踪',
-            headerLeft: (
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image
-                        style={styles.headerBtn}
-                        resizeMode='contain'
-                        source={require('../img/icon/back_light.png')}
-                    />
-                </TouchableOpacity>
-            ),
+            // headerLeft: (
+            //     <TouchableOpacity onPress={() => navigation.goBack()}>
+            //         <Image
+            //             style={styles.headerBtn}
+            //             resizeMode='contain'
+            //             source={require('../img/icon/back_light.png')}
+            //         />
+            //     </TouchableOpacity>
+            // ),
             headerRight: (
                 <TouchableOpacity>
                     <Image
