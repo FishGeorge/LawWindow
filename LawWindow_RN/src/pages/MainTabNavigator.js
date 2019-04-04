@@ -10,24 +10,25 @@ import {
     createStackNavigator
 } from "react-navigation";
 import Screen from "../utils/Screen";
-import CommunityTabNavigator from "./CommunityTabNavigator";
-import NewsPage from "./NewsPage";
-import IssueDetailPage from "./IssueDetailPage";
-import StudyMainPage from "./StudyMainPage";
-import StudyMediaTabNavigator from "./StudyMediaTabNavigator"
-import MePage from "./MePage";
-import BookDetailPage from "./BookDetailPage";
+import CommunityTabNavigator from "./1Community/CommunityTabNavigator";
+import NewsPage from "./2News/NewsPage";
+import IssueDetailPage from "./2News/IssueDetailPage";
+import StudyTabNavigator from "./3Study/StudyTabNavigator"
+import MePage from "./4Me/MePage";
+import BookDetailPage from "./3Study/BookDetailPage";
+import TopicDetailPage from "./1Community/TopicDetailPage";
 
 const CommunityStack = createStackNavigator(
     {
         Community: CommunityTabNavigator,
+        TopicDetail:TopicDetailPage,
     },
     {
         initialRouteName: "Community",
         defaultNavigationOptions: {
             title: '社区',
             headerStyle: {
-                height: 0.065 * Screen.height+1,
+                height: 0.065 * Screen.height,
                 elevation: 0,
                 borderBottomColor:'#000000',
                 // borderBottomWidth:1
@@ -53,13 +54,11 @@ const NewsStack = createStackNavigator(
 
 const StudyStack = createStackNavigator(
     {
-        // StudyMain: StudyMainPage,
-        StudyMediaTabNavigator:StudyMediaTabNavigator,
+        StudyTabNavigator:StudyTabNavigator,
         BookDetail:BookDetailPage,
     },
     {
-        // initialRouteName: "StudyMain",
-        initialRouteName: "StudyMediaTabNavigator",//调试用
+        initialRouteName: "StudyTabNavigator",
         defaultNavigationOptions: {
             title: '学习',
             headerStyle: {
@@ -128,8 +127,8 @@ export default MainTabNavigator = createBottomTabNavigator(
         },
     },
     {
-        // initialRouteName: "News",
-        initialRouteName: "Study",//调试用
+        initialRouteName: "News",
+        // initialRouteName: "Community",//调试用
         tabBarOptions: {
             activeTintColor: '#99dc00',
             inactiveTintColor: 'gray',

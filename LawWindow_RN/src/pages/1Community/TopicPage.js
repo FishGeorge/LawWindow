@@ -7,20 +7,42 @@ import {
     TouchableOpacity,
     FlatList, ScrollView
 } from 'react-native';
-import Screen from "../utils/Screen";
-import imgArr from "../img/imgArr";
-import lawTopics from "../txt/lawTopics";
+import Screen from "../../utils/Screen";
+import imgArr from "../../img/imgArr";
+import lawTopics from "../../txt/lawTopics";
+import lifeTopics from "../../txt/lifeTopics";
+import readingTopics from "../../txt/readingTopics";
 
 export default class TopicPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            topics: {},
+            topicClass: "",
+        };
     };
+
+    componentWillMount() {
+        let itemSrc;
+        switch (this.props.navigation.state.routeName) {
+            case "Law":
+                itemSrc = lawTopics;
+                break;
+            case "Life":
+                itemSrc = lifeTopics;
+                break;
+            case "Reading":
+                itemSrc = readingTopics;
+                break;
+        }
+        this.setState({topics: itemSrc});
+        this.setState({topicClass: this.props.navigation.state.routeName});
+    }
 
     render() {
         return (
             <ScrollView keyboardDismissMode={'on-drag'} showsVerticalScrollIndicator={false}
-                        style={styles.topicPageView}>
+                        style={{flex: 1}} contentContainerStyle={styles.topicPageView}>
                 <FlatList
                     // ItemSeparatorComponent={Platform.OS !== 'android' && ({highlighted}) => (
                     //     <View style={[style.separator, highlighted && {marginLeft: 0}]} />
@@ -28,8 +50,9 @@ export default class TopicPage extends Component {
                     ListHeaderComponent={<View style={styles.topicListHeaderView}>
                         <Text style={styles.topicListTxt}>话题列表</Text>
                     </View>}
-                    data={lawTopics}
-                    renderItem={({item, index, separators}) => this._createIssueItem(item, index, separators)}
+                    style={styles.topicListView}
+                    data={this.state.topics}
+                    renderItem={({item, index, separators}) => this._createTopicItem(item, index, separators)}
                     ItemSeparatorComponent={this._createSeparator}
                     keyExtractor={this._getKey}
                 />
@@ -41,9 +64,9 @@ export default class TopicPage extends Component {
 
     _getKey = (item, index) => ("index" + index);
 
-    _createIssueItem = (item, index, separators) => {
+    _createTopicItem = (item, index, separators) => {
         return (
-            <TouchableOpacity activeOpacity={0.8} onPress={() => this._onIssueClick(item, index)}
+            <TouchableOpacity activeOpacity={0.8} onPress={() => this._onTopicClick(item, index)}
                               style={styles.topicTouchView}>
                 <View style={styles.topicView}>
                     <Image style={styles.headImg}
@@ -54,26 +77,28 @@ export default class TopicPage extends Component {
                         <Text style={styles.contentTxt}>{item.contentSum + "..."}</Text>
                     </View>
                 </View>
-                <Text style={styles.responseTxt}>{"最新回复 "+item.responseAccount+": "+item.response+"..."}</Text>
+                <Text style={styles.responseTxt}>{"最新回复 " + item.responseAccount + ": " + item.response + "..."}</Text>
             </TouchableOpacity>
         );
     };
 
-    _onIssueClick = (item, index) => {
+    _onTopicClick = (item, index) => {
         // console.warn("= " + item.title);
-        this.props.navigation.navigate("TopicDetail", {topicItem: item},);
+        this.props.navigation.navigate("TopicDetail", {topicItem: item, topicClass: this.state.topicClass});
     }
 };
 
 const styles = StyleSheet.create({
     topicPageView: {
-        flex: 1,
+        alignItems: 'center'
+    },
+    topicListView: {
+        width: 0.92 * Screen.width
     },
     topicListHeaderView: {
+        width: 0.92 * Screen.width,
         height: 0.045 * Screen.height,
         marginTop: 0.01 * Screen.height,
-        marginLeft: 0.04 * Screen.width,
-        marginRight: 0.04 * Screen.width,
         justifyContent: 'center',
         borderBottomWidth: 1,
     },
@@ -81,14 +106,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#000000'
     },
-    topicTouchView:{
-        marginLeft: 0.04 * Screen.width,
-        marginRight: 0.04 * Screen.width,
+    topicTouchView: {
+        marginBottom: 0.01 * Screen.height,
     },
     topicView: {
-        flexDirection: 'row',
         width: 0.92 * Screen.width,
         height: 0.09 * Screen.height,
+        marginBottom: 0.01 * Screen.height,
+        flexDirection: 'row',
         alignItems: 'center',
         // borderWidth: 1
     },

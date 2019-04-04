@@ -6,8 +6,9 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
-import Screen from "../utils/Screen";
-import imgArr from "../img/imgArr";
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme";
+import imgArr from "../../img/imgArr";
 
 export default class NewsPage extends Component {
     static navigationOptions = ({navigation}) => {
@@ -21,7 +22,7 @@ export default class NewsPage extends Component {
                 <Image
                     style={styles.settingsBtn}
                     resizeMode='contain'
-                    source={require('../img/icon/more_light.png')}
+                    source={require('../../img/icon/more_light.png')}
                 />
             ),
         };
@@ -41,11 +42,11 @@ export default class NewsPage extends Component {
                         <Image
                             style={styles.headImg}
                             resizeMode='stretch'
-                            source={require('../img/exampleImg/headImg1.jpg')}/>
+                            source={require('../../img/exampleImg/headImg1.jpg')}/>
                         <Image
                             style={styles.detailBtn}
                             resizeMode='stretch'
-                            source={require('../img/icon/right_light.jpg')}/>
+                            source={require('../../img/icon/right_light.jpg')}/>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8}>
@@ -55,7 +56,7 @@ export default class NewsPage extends Component {
                         <Image
                             style={styles.detailBtn}
                             resizeMode='stretch'
-                            source={require('../img/icon/right_light.jpg')}/>
+                            source={require('../../img/icon/right_light.jpg')}/>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8}>
@@ -65,7 +66,7 @@ export default class NewsPage extends Component {
                         <Image
                             style={styles.detailBtn}
                             resizeMode='stretch'
-                            source={require('../img/icon/right_light.jpg')}/>
+                            source={require('../../img/icon/right_light.jpg')}/>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8}>
@@ -80,7 +81,7 @@ export default class NewsPage extends Component {
                         <Image
                             style={styles.detailBtn}
                             resizeMode='stretch'
-                            source={require('../img/icon/right_light.jpg')}/>
+                            source={require('../../img/icon/right_light.jpg')}/>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8} onPress={this._onLogoutBtnClicked}>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     },
     mePageView: {
         flex: 1,
-        backgroundColor: "#eeeeee",
+        backgroundColor: Theme.backGroundColor,
     },
     detailView: {
         height: 0.07 * Screen.height,

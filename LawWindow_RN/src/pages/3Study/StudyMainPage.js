@@ -8,8 +8,8 @@ import {
     TouchableOpacity,
     ProgressBarAndroid
 } from 'react-native';
-import Screen from "../utils/Screen";
-import Theme from "../utils/Theme"
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme"
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 
 LocaleConfig.locales['CN'] = {
@@ -32,7 +32,7 @@ export default class StudyMainPage extends Component {
                 <Image
                     style={styles.settingsBtn}
                     resizeMode='contain'
-                    source={require('../img/icon/more_light.png')}
+                    source={require('../../img/icon/more_light.png')}
                 />
             ),
         };

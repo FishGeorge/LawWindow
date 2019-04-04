@@ -7,9 +7,9 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
-import Screen from "../utils/Screen";
-import Theme from "../utils/Theme";
-import imgArr from "../img/imgArr";
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme";
+import imgArr from "../../img/imgArr";
 
 export default class IssueDetailPage extends Component {
     static navigationOptions = ({navigation}) => {
@@ -32,7 +32,7 @@ export default class IssueDetailPage extends Component {
                     <Image
                         style={styles.headerBtn}
                         resizeMode='contain'
-                        source={require('../img/icon/more_light.png')}
+                        source={require('../../img/icon/more_light.png')}
                     />
                 </TouchableOpacity>
             ),

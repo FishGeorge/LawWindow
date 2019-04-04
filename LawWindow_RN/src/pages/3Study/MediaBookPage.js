@@ -9,10 +9,10 @@ import {
     FlatList,
     TouchableOpacity,
 } from 'react-native';
-import Screen from "../utils/Screen";
-import Theme from "../utils/Theme"
-import books from "../txt/books";
-import imgArr from "../img/imgArr";
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme"
+import books from "../../txt/books";
+import imgArr from "../../img/imgArr";
 
 export default class MediaBookPage extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ export default class MediaBookPage extends Component {
                     <Image
                         style={styles.searchImg}
                         resizeMode='contain'
-                        source={require('../img/icon/search_light.png')}
+                        source={require('../../img/icon/search_light.png')}
                     />
                     <TextInput style={styles.searchInput}/>
                 </View>

@@ -3,12 +3,10 @@ import {
     View,
     Button
 } from 'react-native';
-import Screen from "../utils/Screen";
-import Theme from "../utils/Theme";
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme";
 import {createMaterialTopTabNavigator} from "react-navigation";
-import StudyMainPage from "./StudyMainPage";
-import MediaFilmPage from "./MediaFilmPage";
-import MediaBookPage from "./MediaBookPage";
+import TopicPage from "./TopicPage";
 
 class DefaultScreen extends Component {
     render() {
@@ -24,30 +22,29 @@ class DefaultScreen extends Component {
     }
 }
 
-export default StudyMediaTabNavigator = createMaterialTopTabNavigator(
+export default CommunityTabNavigator = createMaterialTopTabNavigator(
     {
-        Test: {
-            screen: StudyMainPage,
+        Law: {
+            screen: TopicPage,
             navigationOptions: {
-                tabBarLabel: '每日测试',
+                tabBarLabel: '法律',
             },
         },
-        Film: {
-            screen: MediaFilmPage,
+        Life: {
+            screen: TopicPage,
             navigationOptions: {
-                tabBarLabel: '电影',
+                tabBarLabel: '生活',
             },
         },
-        Book: {
-            screen: MediaBookPage,
+        Reading: {
+            screen: TopicPage,
             navigationOptions: {
-                tabBarLabel: '书籍',
+                tabBarLabel: '读书',
             },
         },
     },
     {
-        // initialRouteName: 'Test',
-        initialRouteName: 'Book',//调试用
+        initialRouteName: "Law",
         tabBarOptions: {
             activeTintColor: '#000000',
             inactiveTintColor: '#777777',
@@ -57,11 +54,11 @@ export default StudyMediaTabNavigator = createMaterialTopTabNavigator(
                 backgroundColor:'#ffffff',
             },
             tabStyle:{
-                width:0.33333*Screen.width
+                width:0.2*Screen.width
             },
             indicatorStyle:{
-                marginLeft:0.03*Screen.width,
-                width:0.27333*Screen.width,
+                marginLeft:0.025*Screen.width,
+                width:0.15*Screen.width,
                 backgroundColor:Theme.themeColor
             },
             labelStyle: {

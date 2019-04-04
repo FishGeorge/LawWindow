@@ -7,8 +7,8 @@ import {
     Image,
     TextInput,
 } from 'react-native';
-import Screen from "../utils/Screen";
-import Theme from "../utils/Theme"
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme"
 
 export default class MediaFilmPage extends Component {
     // static navigationOptions = ({navigation}) => {
@@ -39,7 +39,7 @@ export default class MediaFilmPage extends Component {
                     <Image
                         style={styles.searchImg}
                         resizeMode='contain'
-                        source={require('../img/icon/search_light.png')}
+                        source={require('../../img/icon/search_light.png')}
                     />
                     <TextInput style={styles.searchInput}/>
                 </View>

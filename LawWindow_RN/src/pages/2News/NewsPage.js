@@ -10,12 +10,12 @@ import {
     TouchableHighlight,
     TouchableOpacity
 } from 'react-native';
-import Screen from "../utils/Screen";
-import Theme from "../utils/Theme";
+import Screen from "../../utils/Screen";
+import Theme from "../../utils/Theme";
 import Swiper from 'react-native-swiper';
-import imgArr from "../img/imgArr";
-import newSwiper from "../txt/newsSwiper"
-import hotIssues from "../txt/hotIssues";
+import imgArr from "../../img/imgArr";
+import newSwiper from "../../txt/newsSwiper"
+import hotIssues from "../../txt/hotIssues";
 //引入大段文字会报错？
 
 export default class NewsPage extends Component {
@@ -29,7 +29,7 @@ export default class NewsPage extends Component {
                 <Image
                     style={styles.searchBtn}
                     resizeMode='contain'
-                    source={require('../img/icon/search_light.png')}
+                    source={require('../../img/icon/search_light.png')}
                 />
             ),
         };
