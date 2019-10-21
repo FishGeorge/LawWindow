@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import Screen from "../../utils/Screen";
 import Theme from "../../utils/Theme";
-import Swiper from 'react-native-swiper';
+import Swiper from "react-native-swiper";
 import imgArr from "../../img/imgArr";
-import newSwiper from "../../txt/newsSwiper"
+import newSwiper from "../../txt/newsSwiper";
 import hotIssues from "../../txt/hotIssues";
 //引入大段文字会报错？
 

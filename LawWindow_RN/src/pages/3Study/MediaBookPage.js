@@ -58,6 +58,8 @@ export default class MediaBookPage extends Component {
                        source={imgArr['book' + item.img]}/>
                 <View style={styles.bookInfoView}>
                     <Text style={styles.bookName}>{item.name}</Text>
+                    <Text style={styles.bookAP}>{item.author}</Text>
+                    <Text style={styles.bookAP}>{item.press}</Text>
                     <Text style={[styles.bookOtherInfoTxt, {bottom: 24}]}>{" " + item.attentionNum + " 人关注"}</Text>
                     <Text style={[styles.bookOtherInfoTxt, {bottom: 0}]}>{"用户 " + item.uploadAccount + " 创建"}</Text>
                 </View>
@@ -120,6 +122,10 @@ const styles = StyleSheet.create({
     bookName: {
         fontSize: 18,
         color: '#000000'
+    },
+    bookAP: {
+        fontSize: 16,
+        color: '#505050'
     },
     bookOtherInfoTxt: {
         fontSize: 14,
