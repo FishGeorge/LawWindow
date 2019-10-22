@@ -112,31 +112,19 @@ export default class StudyMainPage extends Component {
                     color={Theme.themeColor}
                     style={{width: 0.85 * Screen.width}}
                 />
-                {/*<View style={styles.progressView}>*/}
-                {/*<View style={styles.circleView}>*/}
-                {/*<Text style={styles.progressTxt}>总做题量</Text>*/}
-                {/*<Text style={styles.progressNumTxt}>{this._getFinishedEx()[0]}</Text>*/}
-                {/*</View>*/}
-                {/*<View style={styles.circleView}>*/}
-                {/*</View>*/}
-                {/*<View style={styles.circleView}>*/}
-                {/*<Text style={styles.progressTxt}>正确率</Text>*/}
-                {/*<Text style={styles.progressNumTxt}>{this._getFinishedEx()[0]}</Text>*/}
-                {/*</View>*/}
-                {/*</View>*/}
-                {/*<View style={styles.mediaView}>*/}
-                    {/*<TouchableOpacity activeOpacity={0.8} onPress={this._onFilmBtnClicked}>*/}
-                        {/*<View style={styles.mediaBtn}>*/}
-                            {/*<Text style={{fontSize: 20, color: '#000000',}}>{"电影书籍"}</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<View style={styles.mediaViewSeparator}/>*/}
-                    {/*<TouchableOpacity activeOpacity={0.8} onPress={this._onBookBtnClicked}>*/}
-                        {/*<View style={styles.mediaBtn}>*/}
-                            {/*<Text style={{fontSize: 20, color: '#000000',}}>{"书籍"}</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                {/*</View>*/}
+                <View style={[styles.progressView, {justifyContent: 'space-evenly'}]}>
+                    <View style={styles.circleView}>
+                        <Text style={styles.progressTxt}>总做题量</Text>
+                        <Text style={styles.progressNumTxt}>{this._getFinishedEx()[0]}</Text>
+                    </View>
+                    {/*<View style={styles.circleView}>*/}
+                    {/*</View>*/}
+                    <View style={styles.circleView}>
+                        <Text style={styles.progressTxt}>正确率</Text>
+                        <Text
+                            style={styles.progressNumTxt}>{Number(this._getFinishedEx()[1] * 100).toFixed(1) + "%"}</Text>
+                    </View>
+                </View>
                 <TouchableOpacity style={{position: 'absolute', bottom: 0.02 * Screen.height}} activeOpacity={0.8}
                                   onPress={this._onStudyBtnClicked}>
                     <View style={styles.studyBtn}>
@@ -173,19 +161,14 @@ export default class StudyMainPage extends Component {
         return {
             '2019-03-27': dotStyle,
             '2019-03-29': dotStyle,
+            '2019-10-19': dotStyle,
+            '2019-10-20': dotStyle,
+            '2019-10-21': dotStyle,
         }
     };
 
-    // _onFilmBtnClicked=()=>{
-    //     this.props.navigation.navigate("StudyMediaTabNavigator",{initialRouteName:"Film"});
-    // };
-    //
-    // _onBookBtnClicked=()=>{
-    //     this.props.navigation.navigate("StudyMediaTabNavigator",{initialRouteName:"Book"});
-    // };
-
     _onStudyBtnClicked = () => {
-
+        this.props.navigation.navigate("Exercise", {});
     };
 }
 

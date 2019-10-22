@@ -17,20 +17,23 @@ import StudyTabNavigator from "./3Study/StudyTabNavigator"
 import MePage from "./4Me/MePage";
 import BookDetailPage from "./3Study/BookDetailPage";
 import TopicDetailPage from "./1Community/TopicDetailPage";
+import NewTopicPage from "./1Community/NewTopicPage";
+import ExercisePage from "./3Study/ExercisePage";
 
 const CommunityStack = createStackNavigator(
     {
-        Community: CommunityTabNavigator,
-        TopicDetail:TopicDetailPage,
+        CommunityTabNavigator: CommunityTabNavigator,
+        TopicDetail: TopicDetailPage,
+        NewTopic: NewTopicPage,
     },
     {
-        initialRouteName: "Community",
+        initialRouteName: "CommunityTabNavigator",
         defaultNavigationOptions: {
             title: '社区',
             headerStyle: {
                 height: 0.065 * Screen.height,
                 elevation: 0,
-                borderBottomColor:'#000000',
+                borderBottomColor: '#000000',
                 // borderBottomWidth:1
             },
         }
@@ -40,22 +43,23 @@ const CommunityStack = createStackNavigator(
 const NewsStack = createStackNavigator(
     {
         News: NewsPage,
-        IssueDetail:IssueDetailPage,
+        IssueDetail: IssueDetailPage,
     },
     {
         initialRouteName: "News",
         defaultNavigationOptions: {
-                headerStyle: {
-                    height: 0 * Screen.height,
-                },
+            headerStyle: {
+                height: 0 * Screen.height,
+            },
         },
     }
 );
 
 const StudyStack = createStackNavigator(
     {
-        StudyTabNavigator:StudyTabNavigator,
-        BookDetail:BookDetailPage,
+        StudyTabNavigator: StudyTabNavigator,
+        Exercise: ExercisePage,
+        BookDetail: BookDetailPage,
     },
     {
         initialRouteName: "StudyTabNavigator",
@@ -127,13 +131,13 @@ export default MainTabNavigator = createBottomTabNavigator(
         },
     },
     {
-        initialRouteName: "News",
-        // initialRouteName: "Community",//调试用
+        // initialRouteName: "News",
+        initialRouteName: "Community",//调试用
         tabBarOptions: {
             activeTintColor: '#99dc00',
             inactiveTintColor: 'gray',
             style: {
-                height: 0.07 * Screen.height,
+                height: Screen.APPBAR_HEIGHT,
                 borderTopWidth: 1,
                 borderColor: '#f6f6f6',
                 paddingTop: 2,
@@ -150,9 +154,9 @@ export default MainTabNavigator = createBottomTabNavigator(
 );
 
 const styles = StyleSheet.create({
-    MainView: {
-        height: Screen.height - Screen.STATUSBAR_HEIGHT,
-    },
+    // MainView: {
+    //     height: Screen.height - Screen.STATUSBAR_HEIGHT,
+    // },
     iconImg: {
         height: 0.04 * Screen.height
     }

@@ -42,6 +42,12 @@ export default CommunityTabNavigator = createMaterialTopTabNavigator(
                 tabBarLabel: '读书',
             },
         },
+        Follow: {
+            screen: TopicPage,
+            navigationOptions: {
+                tabBarLabel: '关注',
+            },
+        },
     },
     {
         initialRouteName: "Law",

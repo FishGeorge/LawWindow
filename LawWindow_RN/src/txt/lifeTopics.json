@@ -1,11 +1,16 @@
 [
   {
     "headImg": "2",
-    "title": "急，被人在网上公开我的隐私怎么办？",
-    "author":"",
-    "contentSum": "有人恶意搜索整理我的个人信息发在网上",
-    "time":"",
-    "responseAccount": "Admin",
-    "response": "建议求助警方"
+    "title": "急，被人在网上公开我的隐私...",
+    "author": "",
+    "content": "有人恶意搜索整理我的个人信息发在",
+    "time": "",
+    "response": [
+      {
+        "index": 1,
+        "responseAccount": "Admin",
+        "content": "建议求助警方"
+      }
+    ]
   }
 ]

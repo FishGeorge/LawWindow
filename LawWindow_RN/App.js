@@ -6,7 +6,6 @@ import {
     Button
 } from 'react-native';
 import {
-    createStackNavigator,
     createAppContainer,
     createSwitchNavigator
 } from 'react-navigation';

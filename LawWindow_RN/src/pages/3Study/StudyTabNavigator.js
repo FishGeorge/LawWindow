@@ -12,7 +12,7 @@ import MediaBookPage from "./MediaBookPage";
 
 export default StudyTabNavigator = createMaterialTopTabNavigator(
     {
-        Exercise: {
+        Study: {
             screen: StudyMainPage,
             navigationOptions: {
                 tabBarLabel: '每日练习',
@@ -32,7 +32,7 @@ export default StudyTabNavigator = createMaterialTopTabNavigator(
         },
     },
     {
-        initialRouteName: 'Exercise',
+        initialRouteName: 'Study',
         // initialRouteName: 'Book',//调试用
         tabBarOptions: {
             activeTintColor: '#000000',
@@ -40,15 +40,15 @@ export default StudyTabNavigator = createMaterialTopTabNavigator(
             showIcon: false,
             style: {
                 height: 0.055 * Screen.height,
-                backgroundColor:'#ffffff',
+                backgroundColor: '#ffffff',
             },
-            tabStyle:{
-                width:0.33333*Screen.width
+            tabStyle: {
+                width: 0.33333 * Screen.width
             },
-            indicatorStyle:{
-                marginLeft:0.03*Screen.width,
-                width:0.27333*Screen.width,
-                backgroundColor:Theme.themeColor
+            indicatorStyle: {
+                marginLeft: 0.03 * Screen.width,
+                width: 0.27333 * Screen.width,
+                backgroundColor: Theme.themeColor
             },
             labelStyle: {
                 fontSize: 16,

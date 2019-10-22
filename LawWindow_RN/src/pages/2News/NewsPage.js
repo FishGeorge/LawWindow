@@ -15,8 +15,8 @@ import Theme from "../../utils/Theme";
 import Swiper from "react-native-swiper";
 import imgArr from "../../img/imgArr";
 import newSwiper from "../../txt/newsSwiper";
+import columnArticle from "../../txt/columnArticle";
 import hotIssues from "../../txt/hotIssues";
-//引入大段文字会报错？
 
 export default class NewsPage extends Component {
     static navigationOptions = ({navigation}) => {
@@ -45,7 +45,7 @@ export default class NewsPage extends Component {
             <ScrollView keyboardDismissMode={'on-drag'} showsVerticalScrollIndicator={false}
                         style={styles.newsPageView}>
                 <View style={styles.swiperBox}>
-                    <Swiper showsButtons={false} dot={this._createDot()} activeDot={this._createActiveDot()}>
+                    <Swiper autoplay={true} showsButtons={false} dot={this._createDot()} activeDot={this._createActiveDot()}>
                         {this._createSwiperContent()}
                     </Swiper>
                 </View>
@@ -60,8 +60,20 @@ export default class NewsPage extends Component {
                     // ItemSeparatorComponent={Platform.OS !== 'android' && ({highlighted}) => (
                     //     <View style={[style.separator, highlighted && {marginLeft: 0}]} />
                     //     )}
-                    ListHeaderComponent={<View style={styles.hotIssueView}>
-                        <Text style={styles.hotIssueTxt}>热点追踪</Text>
+                    ListHeaderComponent={<View style={styles.flView}>
+                        <Text style={styles.flTitleTxt}>专栏订阅</Text>
+                    </View>}
+                    data={columnArticle}
+                    renderItem={({item, index, separators}) => this._createArticleItem(item, index, separators)}
+                    ItemSeparatorComponent={this._createSeparator}
+                    keyExtractor={this._getKey}
+                />
+                <FlatList
+                    // ItemSeparatorComponent={Platform.OS !== 'android' && ({highlighted}) => (
+                    //     <View style={[style.separator, highlighted && {marginLeft: 0}]} />
+                    //     )}
+                    ListHeaderComponent={<View style={styles.flView}>
+                        <Text style={styles.flTitleTxt}>热点追踪</Text>
                     </View>}
                     data={hotIssues}
                     renderItem={({item, index, separators}) => this._createIssueItem(item, index, separators)}
@@ -135,6 +147,20 @@ export default class NewsPage extends Component {
     _createSeparator = () => (<View style={styles.separator}/>);
 
     _getKey = (item, index) => ("index" + index);
+
+    _createArticleItem = (item, index, separators) => {
+        // console.warn(index);
+        return (
+            <TouchableOpacity activeOpacity={0.8} onPress={() => this._onIssueClick(item, index)}>
+                <View style={styles.issue}>
+                    <Image style={styles.issueImg}
+                           resizeMode='cover'
+                           source={imgArr['hotIssue' + item.img]}/>
+                    <Text style={styles.issueTxt}>{item.title}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    };
 
     _createIssueItem = (item, index, separators) => {
         // console.warn(index);
@@ -236,7 +262,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#777777',
     },
-    hotIssueView: {
+    flView: {
         height: 0.045 * Screen.height,
         // width: 0.25 * Screen.width,
         marginTop: 0.01 * Screen.height,
@@ -246,7 +272,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderBottomWidth: 1
     },
-    hotIssueTxt: {
+    flTitleTxt: {
         fontSize: 24,
         color: '#000000'
     },
