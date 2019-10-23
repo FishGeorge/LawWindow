@@ -8,7 +8,9 @@ import {
     ScrollView,
     FlatList,
     TouchableHighlight,
-    TouchableOpacity
+    TouchableOpacity,
+    Animated,
+    Easing,
 } from 'react-native';
 import Screen from "../../utils/Screen";
 import Theme from "../../utils/Theme";
@@ -17,6 +19,7 @@ import imgArr from "../../img/imgArr";
 import newSwiper from "../../txt/newsSwiper";
 import columnArticle from "../../txt/columnArticle";
 import hotIssues from "../../txt/hotIssues";
+import quotes from "../../txt/quotes";
 
 export default class NewsPage extends Component {
     static navigationOptions = ({navigation}) => {
@@ -37,7 +40,11 @@ export default class NewsPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.refreshBtnSpinVal = new Animated.Value(0);
+        this.state = {
+            quote: "    " + quotes[new Date().getDay() - 1].content,
+            quoteSrc: "——" + quotes[new Date().getDay() - 1].source
+        }
     };
 
     render() {
@@ -45,15 +52,30 @@ export default class NewsPage extends Component {
             <ScrollView keyboardDismissMode={'on-drag'} showsVerticalScrollIndicator={false}
                         style={styles.newsPageView}>
                 <View style={styles.swiperBox}>
-                    <Swiper autoplay={true} showsButtons={false} dot={this._createDot()} activeDot={this._createActiveDot()}>
+                    <Swiper autoplay={true} showsButtons={false} dot={this._createDot()}
+                            activeDot={this._createActiveDot()}>
                         {this._createSwiperContent()}
                     </Swiper>
                 </View>
                 <View style={styles.quoteView}>
-                    <Text style={styles.dateTxt}>{this._getDate()}</Text>
-                    <Text style={styles.quoteTxt}>{this._getQuote().quote}</Text>
+                    <View style={styles.quoteTitleView}>
+                        <Text style={styles.dateTxt}>{this._getDate()}</Text>
+                        <TouchableOpacity activeOpacity={1} onPress={() => this._onRefreshClick()}>
+                            <Animated.Image style={[styles.refreshImg, {
+                                transform: [{
+                                    rotate: this.refreshBtnSpinVal.interpolate({
+                                        inputRange: [0, 1],//输入值
+                                        outputRange: ["0deg", "360deg"] //输出值
+                                    })
+                                }]
+                            }]}
+                                            resizeMode='contain'
+                                            source={require('../../img/icon/refresh.png')}/>
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={styles.quoteTxt}>{this.state.quote}</Text>
                     <View style={styles.quoteSourceView}>
-                        <Text style={styles.quoteSourceTxt}>{this._getQuote().source}</Text>
+                        <Text style={styles.quoteSourceTxt}>{this.state.quoteSrc}</Text>
                     </View>
                 </View>
                 <FlatList
@@ -139,11 +161,6 @@ export default class NewsPage extends Component {
         return "今天是 " + (date.getMonth() + 1) + "月" + date.getDate() + "日 星期" + weekDay;
     };
 
-    _getQuote = () => ({
-        quote: "  " + "在一切能够接受法律支配的人类的状态中，哪里没有法律，哪里就没有自由。",
-        source: "——洛克《政府论》"
-    });
-
     _createSeparator = () => (<View style={styles.separator}/>);
 
     _getKey = (item, index) => ("index" + index);
@@ -178,8 +195,24 @@ export default class NewsPage extends Component {
 
     _onIssueClick = (item, index) => {
         // console.warn("= " + item.title);
-        this.props.navigation.navigate("IssueDetail",{issueItem: item},);
-    }
+        this.props.navigation.navigate("IssueDetail", {issueItem: item},);
+    };
+
+    _onRefreshClick = () => {
+        // console.warn(this.refreshBtnSpinVal);
+        this.refreshBtnSpinVal.setValue(0);
+        Animated.timing(this.refreshBtnSpinVal, {
+            toValue: 1, // 最终值 为1，这里表示最大旋转 360度
+            duration: 500,
+            easing: Easing.linear
+        }).start();
+        //更换
+        let i = parseInt(Math.random() * 7);
+        this.setState({
+            quote: "    " + quotes[i].content,
+            quoteSrc: "——" + quotes[i].source
+        });
+    };
 }
 
 const styles = StyleSheet.create({
@@ -243,6 +276,16 @@ const styles = StyleSheet.create({
         marginRight: 0.05 * Screen.width,
         // borderWidth: 1,
         // borderColor: '#000000'
+    },
+    quoteTitleView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    refreshImg: {
+        height: 0.03 * Screen.height,
+        width: 0.03 * Screen.height,
+        marginRight: 0.08 * Screen.height,
     },
     dateTxt: {
         fontSize: 20,

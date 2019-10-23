@@ -19,55 +19,57 @@ export default class LoginPage extends Component {
     render() {
         return (
             <View style={styles.loginPageView}>
-                <View style={{height: 0.3 * Screen.height}}>
-                    <Text>{"为你打开一扇法窗"}</Text>
+                <View style={styles.upHalfView}>
+                    <Text style={styles.titleTxt}>{"为你打开一扇法窗"}</Text>
                 </View>
-                <View style={styles.inputViewOut}>
-                    <View style={styles.inputView}>
-                        <TextInput style={styles.txtIp} keyboardType={'numeric'} maxLength={11} placeholder={"手机号"}
-                                   placeholderTextColor={'#777777'}/>
-                    </View>
-                    <View style={styles.separator}/>
-                    <View style={styles.inputView}>
-                        <TextInput style={[styles.txtIp, {width: 0.4 * Screen.width}]} keyboardType={'numeric'}
-                                   maxLength={6} placeholder={"验证码"} placeholderTextColor={'#777777'}/>
+                <View style={styles.downHalfView}>
+                    <View style={styles.thirdLoginView}>
                         <TouchableOpacity activeOpacity={0.8}>
-                            <View style={styles.sendCodeBtn}>
-                                <Text style={{fontSize: 14, color: '#000000',}}>{"发送验证码"}</Text>
+                            <View style={styles.thirdLoginBtn}>
+                                <Image
+                                    style={{height: 0.05 * Screen.height, width: 0.05 * Screen.height,}}
+                                    resizeMode='contain'
+                                    source={require('../img/exampleImg/qq.jpg')}/>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.8}>
+                            <View style={styles.thirdLoginBtn}>
+                                <Image
+                                    style={{
+                                        height: 0.07 * Screen.height,
+                                        width: 0.07 * Screen.height,
+                                        borderRadius: 0.035 * Screen.height
+                                    }}
+                                    resizeMode='contain'
+                                    source={require('../img/exampleImg/weixin.jpg')}/>
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <Text style={styles.thirdLoginTxt}>{"—  其他方式登录  —"}</Text>
                 </View>
-                <View style={{height: 0.1 * Screen.height}}/>
-                <TouchableOpacity activeOpacity={0.8} onPress={this._onLoginBtnClicked}>
-                    <View style={styles.loginBtn}>
-                        <Text style={{fontSize: 20, color: '#000000',}}>{"登 录"}</Text>
+                <View style={styles.loginView}>
+                    <View style={styles.inputViewOut}>
+                        <View style={styles.inputView}>
+                            <TextInput style={styles.txtIp} keyboardType={'numeric'} maxLength={11} placeholder={"手机号"}
+                                       placeholderTextColor={'#777777'}/>
+                        </View>
+                        <View style={styles.separatorView}/>
+                        <View style={styles.inputView}>
+                            <TextInput style={[styles.txtIp, {width: 0.4 * Screen.width}]} keyboardType={'numeric'}
+                                       maxLength={6} placeholder={"验证码"} placeholderTextColor={'#777777'}/>
+                            <TouchableOpacity activeOpacity={0.8}>
+                                <View style={styles.sendCodeBtn}>
+                                    <Text style={{fontSize: 14, color: '#000000',}}>{"发送验证码"}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </TouchableOpacity>
-                <View style={{height: 0.05 * Screen.height}}/>
-                <View style={styles.thirdLoginView}>
-                    <TouchableOpacity activeOpacity={0.8}>
-                        <View style={styles.thirdLoginBtn}>
-                            <Image
-                                style={{height: 0.05 * Screen.height, width: 0.05 * Screen.height,}}
-                                resizeMode='contain'
-                                source={require('../img/exampleImg/qq.jpg')}/>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8}>
-                        <View style={styles.thirdLoginBtn}>
-                            <Image
-                                style={{
-                                    height: 0.07 * Screen.height,
-                                    width: 0.07 * Screen.height,
-                                    borderRadius: 0.035 * Screen.height
-                                }}
-                                resizeMode='contain'
-                                source={require('../img/exampleImg/weixin.jpg')}/>
+                    <TouchableOpacity activeOpacity={0.8} onPress={this._onLoginBtnClicked}>
+                        <View style={styles.loginBtn}>
+                            <Text style={{fontSize: 20, color: Theme.white,}}>{"登 录"}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{height: 0.27 * Screen.height}}/>
             </View>
         );
     }
@@ -81,26 +83,86 @@ const styles = StyleSheet.create({
     loginPageView: {
         flex: 1,
         alignItems: 'center',
-        // backgroundColor: Theme.themeColor
+        // backgroundColor: Theme.themeColorLight,
+        // backgroundColor: Theme.backGroundColor
     },
-    inputViewOut: {
-        height: 0.16 * Screen.height,
-        width: 0.75 * Screen.width,
-        borderRadius: 0.03 * Screen.width,
+    upHalfView: {
+        height: 0.38 * (Screen.height - Screen.STATUSBAR_HEIGHT),
+        width: Screen.width,
+        backgroundColor: Theme.themeColorLight,
+        // justifyContent:'center',
+        paddingTop: 0.15 * Screen.height,
+        alignItems: 'center',
+        // borderWidth: 1,
+    },
+    titleTxt: {
+        fontSize: 26,
+        color: Theme.white,
+    },
+    downHalfView: {
+        height: 0.62 * (Screen.height - Screen.STATUSBAR_HEIGHT),
+        width: Screen.width,
+        backgroundColor: Theme.backGroundColor,
+        flexDirection: 'column-reverse',
+        alignItems:'center'
+        // borderWidth: 1,
+    },
+    thirdLoginView: {
+        // height: 0.07 * Screen.height,
+        width: Screen.width,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        // borderWidth: 1,
+        marginBottom:0.05*Screen.height,
+    },
+    thirdLoginTxt: {
+        fontSize:18,
+        // color:
+        marginBottom:0.02*Screen.height,
+    },
+    thirdLoginBtn: {
+        height: 0.07 * Screen.height,
+        width: 0.07 * Screen.height,
+        marginLeft: 0.075 * Screen.width,
+        marginRight: 0.075 * Screen.width,
+        borderRadius: 0.035 * Screen.height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#c8d6e8'
+        backgroundColor: Theme.white,
+        // borderWidth: 1
+    },
+    loginView: {
+        position: 'absolute',
+        height: 0.4 * Screen.height,
+        width: 0.9 * Screen.width,
+        borderRadius: 0.01 * Screen.height,
+        alignItems: 'center',
+        top: 0.3 * Screen.height,
+        elevation: 3,
+        backgroundColor: '#FFFFFF'
+    },
+    inputViewOut: {
+        height: 0.20 * Screen.height,
+        width: 0.75 * Screen.width,
+        marginTop: 0.04 * Screen.height,
+        // borderRadius: 0.03 * Screen.width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: '#c8d6e8',
+        // backgroundColor: Theme.themeColorLight
+        // borderWidth: 1,
     },
     inputView: {
-        height: 0.08 * Screen.height,
+        height: 0.09 * Screen.height,
         width: 0.75 * Screen.width,
         flexDirection: 'row',
         alignItems: 'center'
     },
-    separator: {
+    separatorView: {
         height: 1,
         width: 0.7 * Screen.width,
-        backgroundColor: '#999999'
+        // backgroundColor: '#999999',
+        backgroundColor: '#000000'
     },
     txtIp: {
         width: 0.75 * Screen.width,
@@ -121,26 +183,12 @@ const styles = StyleSheet.create({
     loginBtn: {
         height: 0.08 * Screen.height,
         width: 0.75 * Screen.width,
+        marginTop: 0.04 * Screen.height,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 0.03 * Screen.width,
-        backgroundColor: '#c8d6e8',
-    },
-    thirdLoginView: {
-        height: 0.07 * Screen.height,
-        width: Screen.width,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        // borderWidth: 1
-    },
-    thirdLoginBtn: {
-        height: 0.07 * Screen.height,
-        width: 0.07 * Screen.height,
-        marginLeft: 0.075 * Screen.width,
-        marginRight: 0.075 * Screen.width,
-        borderRadius: 0.035 * Screen.height,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1
+        borderRadius: 0.04 * Screen.height,
+        // backgroundColor: '#c8d6e8',
+        backgroundColor: Theme.themeColorLight,
+        // borderWidth: 1,
     },
 });

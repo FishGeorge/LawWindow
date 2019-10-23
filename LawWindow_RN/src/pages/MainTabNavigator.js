@@ -31,7 +31,7 @@ const CommunityStack = createStackNavigator(
         defaultNavigationOptions: {
             title: '社区',
             headerStyle: {
-                height: 0.065 * Screen.height,
+                height: Screen.TOPBAR_HEIGHT,
                 elevation: 0,
                 borderBottomColor: '#000000',
                 // borderBottomWidth:1
@@ -66,7 +66,7 @@ const StudyStack = createStackNavigator(
         defaultNavigationOptions: {
             title: '学习',
             headerStyle: {
-                height: 0.065 * Screen.height,
+                height: Screen.TOPBAR_HEIGHT,
                 elevation: 0,
             },
         }
@@ -132,7 +132,7 @@ export default MainTabNavigator = createBottomTabNavigator(
     },
     {
         // initialRouteName: "News",
-        initialRouteName: "Community",//调试用
+        initialRouteName: "News",//调试用
         tabBarOptions: {
             activeTintColor: '#99dc00',
             inactiveTintColor: 'gray',

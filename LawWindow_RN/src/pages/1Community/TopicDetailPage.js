@@ -27,6 +27,9 @@ export default class TopicDetailPage extends Component {
             case "Reading":
                 topicClass = "读书";
                 break;
+            case "Follow":
+                topicClass = "关注";
+                break;
         }
         return {
             title: '社区 - ' + topicClass,

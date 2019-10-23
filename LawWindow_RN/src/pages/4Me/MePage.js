@@ -15,7 +15,7 @@ export default class NewsPage extends Component {
         return {
             title: '我的',
             headerStyle: {
-                height: 0.065 * Screen.height,
+                height: Screen.TOPBAR_HEIGHT,
                 elevation: 0,
             },
             headerRight: (

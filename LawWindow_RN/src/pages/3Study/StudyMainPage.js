@@ -11,6 +11,7 @@ import {
 import Screen from "../../utils/Screen";
 import Theme from "../../utils/Theme"
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import exercises from "../../txt/exercises"
 
 LocaleConfig.locales['CN'] = {
     monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
@@ -168,7 +169,8 @@ export default class StudyMainPage extends Component {
     };
 
     _onStudyBtnClicked = () => {
-        this.props.navigation.navigate("Exercise", {});
+        let i = parseInt(Math.random() * 10);
+        this.props.navigation.navigate("Exercise", {"exercise": exercises[0]});
     };
 }
 
@@ -254,13 +256,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#dddddd',
     },
     studyBtn: {
-        height: 0.07 * Screen.height,
-        width: 0.8 * Screen.width,
+        height: 0.08 * Screen.height,
+        width: 0.75 * Screen.width,
         marginTop: 0.01 * Screen.height,
-        borderRadius: 0.015 * Screen.height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Theme.themeColor,
+        borderRadius: 0.04 * Screen.height,
+        backgroundColor: Theme.themeColorLight,
         // borderWidth: 1,
     }
 });
