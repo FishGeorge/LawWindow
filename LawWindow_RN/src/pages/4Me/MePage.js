@@ -41,7 +41,7 @@ export default class NewsPage extends Component {
                         <Text style={styles.detailTxt}>{"头像"}</Text>
                         <Image
                             style={styles.headImg}
-                            resizeMode='stretch'
+                            resizeMode='cover'
                             source={require('../../img/exampleImg/headImg1.jpg')}/>
                         <Image
                             style={styles.detailBtn}
@@ -52,7 +52,7 @@ export default class NewsPage extends Component {
                 <TouchableOpacity activeOpacity={0.8}>
                     <View style={styles.detailView}>
                         <Text style={styles.detailTxt}>{"昵称"}</Text>
-                        <Text style={styles.infoTxt}>{"龚呈"}</Text>
+                        <Text style={styles.infoTxt}>{"George"}</Text>
                         <Image
                             style={styles.detailBtn}
                             resizeMode='stretch'

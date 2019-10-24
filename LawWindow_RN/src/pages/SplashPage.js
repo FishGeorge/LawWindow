@@ -30,7 +30,7 @@ export default class SplashPage extends Component {
     }
 
     componentDidMount() {
-        // 5s后自动跳过
+        // 3s后自动跳过
         this.timer1 = setTimeout(() => {
             // Animated.timing(
             //     this.state.bounceValue, // 初始值
@@ -65,12 +65,21 @@ export default class SplashPage extends Component {
                     <Image source={{uri: this.state.SplashPic}} style={styles.splashImg}/>
                 </View>
                 <View style={styles.infoView}>
-                    <View style={styles.logoView}/>
+                    <View style={styles.logoView}>
+                        <Image style={{
+                            width: 0.069 * Screen.height,
+                            height: 0.069 * Screen.height,
+                            // 很有问题，这个图有点硬...
+                            // borderRadius: 0.04 * Screen.height,
+                            // borderWidth: 1
+                        }}
+                               source={require("../img/ic_launcher.jpg")} resizeMode='contain'/>
+                    </View>
                     <View style={styles.nameView}>
                         <Text style={{fontSize: 28, fontWeight: 'bold', color: Theme.themeColor}}>法窗</Text>
                         <Text style={{fontSize: 13}}>扣开时代之窗</Text>
                     </View>
-                    <Text style={styles.infoBottom}>{"Copy right @ 东南大学法学院  Ver 0.2.0"}</Text>
+                    <Text style={styles.infoBottom}>{"Copy right @ 东南大学法学院  Ver 0.3.0"}</Text>
                 </View>
                 <TouchableOpacity onPress={() => this._pressSkip()} style={styles.btn}>
                     <Text style={styles.btnText}>{"跳过 " + this.state.time}</Text>
@@ -114,8 +123,9 @@ const styles = StyleSheet.create({
         width: 0.1 * Screen.height,
         height: 0.1 * Screen.height,
         borderRadius: 0.05 * Screen.height,
-        borderWidth: 1,
-        borderColor: '#000000',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1
     },
     nameView: {
         width: 0.35 * Screen.width,

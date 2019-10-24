@@ -6,27 +6,15 @@ import {
     StyleSheet,
     Image,
     TextInput,
+    FlatList,
+    TouchableOpacity,
 } from 'react-native';
 import Screen from "../../utils/Screen";
 import Theme from "../../utils/Theme"
+import films from "../../txt/films";
+import imgArr from "../../img/imgArr";
 
 export default class MediaFilmPage extends Component {
-    // static navigationOptions = ({navigation}) => {
-    //     return {
-    //         headerStyle: {
-    //             height: 0.065 * Screen.height,
-    //         },
-    //         headerLeft: (<TextInput style={styles.searchInput}/>),
-    //         headerRight: (
-    //             <Image
-    //                 style={styles.searchBtn}
-    //                 resizeMode='contain'
-    //                 source={require('../img/icon/search_light.png')}
-    //             />
-    //         ),
-    //     };
-    // };
-
     constructor(props) {
         super(props);
         this.state = {};
@@ -43,9 +31,44 @@ export default class MediaFilmPage extends Component {
                     />
                     <TextInput style={styles.searchInput}/>
                 </View>
+                <ScrollView style={{flex: 1}}>
+                    <FlatList
+                        data={films}
+                        renderItem={({item, index, separators}) => this._createFilmItem(item, index, separators)}
+                        ItemSeparatorComponent={this._createSeparator}
+                        keyExtractor={this._getKey}
+                    />
+                </ScrollView>
             </View>
         );
     };
+
+    _createFilmItem = (item, index, separators) => {
+        return (
+            <TouchableOpacity style={styles.filmItem} activeOpacity={0.8}
+                              onPress={() => this._onFilmClick(item, index)}>
+                <Image style={styles.filmImg}
+                       resizeMode='contain'
+                       source={imgArr['film' + item.img]}/>
+                <View style={styles.filmInfoView}>
+                    <Text style={styles.filmName}>{item.name}</Text>
+                    <Text style={styles.filmAP}>{item.director}</Text>
+                    <Text style={styles.filmAP}>{item.scriptwriter}</Text>
+                    <Text style={[styles.filmOtherInfoTxt, {bottom: 24}]}>{" " + item.attentionNum + " 人关注"}</Text>
+                    <Text style={[styles.filmOtherInfoTxt, {bottom: 0}]}>{"用户 " + item.uploadAccount + " 创建"}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    };
+
+    _createSeparator = () => (<View style={styles.separator}/>);
+
+    _getKey = (item, index) => ("index" + index);
+
+    _onFilmClick = (item, index) => {
+        // console.warn("= " + item.title);
+        this.props.navigation.navigate("FilmDetail", {filmItem: item},);
+    }
 }
 
 const styles = StyleSheet.create({
@@ -56,8 +79,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginTop:0.015*Screen.height,
-        marginBottom:0.015*Screen.height,
+        marginTop: 0.015 * Screen.height,
+        marginBottom: 0.015 * Screen.height,
         backgroundColor: "#ededed",
         // borderWidth: 1
     },
@@ -72,4 +95,41 @@ const styles = StyleSheet.create({
         // bottom:-0.005 * Screen.height,
         // borderWidth: 1
     },
+    filmItem: {
+        height: 0.17 * Screen.height,
+        width: Screen.width,
+        flexDirection: 'row',
+        paddingTop: 0.01 * Screen.height,
+        paddingBottom: 0.01 * Screen.height,
+        paddingLeft: 0.04 * Screen.width,
+        paddingRight: 0.04 * Screen.width
+        // borderWidth:1
+    },
+    filmImg: {
+        height: 0.15 * Screen.height,
+        width: 0.15 * Screen.height,
+    },
+    filmInfoView: {
+        height: 0.15 * Screen.height,
+        width: 0.92 * Screen.width - 0.15 * Screen.height,
+    },
+    filmName: {
+        fontSize: 18,
+        color: '#000000'
+    },
+    filmAP: {
+        fontSize: 16,
+        color: '#505050'
+    },
+    filmOtherInfoTxt: {
+        fontSize: 14,
+        color: '#000000',
+        position: 'absolute'
+    },
+    separator: {
+        height: 1,
+        backgroundColor: '#dddddd',
+        marginLeft: 0.04 * Screen.width,
+        marginRight: 0.04 * Screen.width,
+    }
 });

@@ -6,7 +6,8 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    ProgressBarAndroid
+    ProgressBarAndroid,
+    ToastAndroid
 } from 'react-native';
 import Screen from "../../utils/Screen";
 import Theme from "../../utils/Theme"
@@ -41,10 +42,14 @@ export default class StudyMainPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isExDone: 0,
+            exDoneTimes: 0,
+        };
     };
 
     render() {
+        // console.warn("render!!");
         return (
             <ScrollView contentContainerStyle={styles.studyPageView}>
                 <View style={styles.practiceView}>
@@ -148,6 +153,10 @@ export default class StudyMainPage extends Component {
         return [35 + "/" + 170, 35 / 170];
     };
 
+    fix = (num, length) => {
+        return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num;
+    };
+
     _getMarkedDates = () => {
         let dotStyle = {
             customStyles: {
@@ -159,18 +168,37 @@ export default class StudyMainPage extends Component {
                 },
             },
         };
-        return {
+        let out = {
             '2019-03-27': dotStyle,
-            '2019-03-29': dotStyle,
+            '2019-09-29': dotStyle,
             '2019-10-19': dotStyle,
             '2019-10-20': dotStyle,
             '2019-10-21': dotStyle,
+        };
+        let date = new Date();
+        // console.warn(date.getFullYear() + "-" + this.fix(date.getMonth() + 1, 2) + "-" + this.fix(date.getDate(), 2));
+        if (this.state.isExDone === 1) {
+            out[date.getFullYear() + "-" + this.fix(date.getMonth() + 1, 2) + "-" + this.fix(date.getDate(), 2)] = dotStyle;
+            if (this.state.exDoneTimes < 2)
+                ToastAndroid.show("打卡成功！", ToastAndroid.SHORT);
+            else
+                ToastAndroid.show("今日已打卡", ToastAndroid.SHORT);
+            // console.warn(out);
         }
+        return out;
     };
 
     _onStudyBtnClicked = () => {
         let i = parseInt(Math.random() * 10);
-        this.props.navigation.navigate("Exercise", {"exercise": exercises[0]});
+        this.props.navigation.navigate(
+            "Exercise",
+            {
+                "exercise": exercises[parseInt(Math.random() * 10)],
+                exCallBack: () => {
+                    this.setState((prevState) => ({"isExDone": 1, "exDoneTimes": prevState.exDoneTimes + 1}));
+                }
+            }
+        );
     };
 }
 

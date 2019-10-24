@@ -11,7 +11,7 @@ import Screen from "../../utils/Screen";
 import Theme from "../../utils/Theme";
 import imgArr from "../../img/imgArr";
 
-export default class BookDetailPage extends Component {
+export default class FilmDetailPage extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             headerRight: (
@@ -29,33 +29,33 @@ export default class BookDetailPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookItem: this.props.navigation.getParam('bookItem')
+            filmItem: this.props.navigation.getParam('filmItem')
         };
     };
 
     render() {
         return (
             <ScrollView keyboardDismissMode={'on-drag'} showsVerticalScrollIndicator={false}
-                        style={{flex: 1}} contentContainerStyle={styles.bookDPView}>
-                <View style={styles.bookInfoView}>
+                        style={{flex: 1}} contentContainerStyle={styles.filmDPView}>
+                <View style={styles.filmInfoView}>
                     <Image
-                        style={styles.bookImg}
+                        style={styles.filmImg}
                         resizeMode='cover'
-                        source={imgArr['book' + this.state.bookItem.img]}
+                        source={imgArr['film' + this.state.filmItem.img]}
                     />
-                    <View style={styles.bookInfo}>
-                        <Text style={styles.nameTxt}>{this.state.bookItem.name}</Text>
-                        <Text style={styles.authorTxt}>{"作者：" + this.state.bookItem.author}</Text>
-                        <Text style={styles.authorTxt}>{"出版社：" + this.state.bookItem.press}</Text>
+                    <View style={styles.filmInfo}>
+                        <Text style={styles.nameTxt}>{this.state.filmItem.name}</Text>
+                        <Text style={styles.authorTxt}>{"导演：" + this.state.filmItem.director}</Text>
+                        <Text style={styles.authorTxt}>{"编剧：" + this.state.filmItem.scriptwriter}</Text>
                     </View>
                 </View>
                 <View style={styles.contentInfoView}>
                     <View style={styles.moduleHead}><Text style={styles.moduleHeadTxt}>{"内容简介"}</Text></View>
-                    <Text style={styles.contentInfoTxt}>{"    "+this.state.bookItem.contentInfo}</Text>
+                    <Text style={styles.contentInfoTxt}>{"    "+this.state.filmItem.contentInfo}</Text>
                 </View>
                 <View style={styles.contentInfoView}>
-                    <View style={styles.moduleHead}><Text style={styles.moduleHeadTxt}>{"作者简介"}</Text></View>
-                    <Text style={styles.contentInfoTxt}>{"    "+this.state.bookItem.authorInfo}</Text>
+                    <View style={styles.moduleHead}><Text style={styles.moduleHeadTxt}>{"导演简介"}</Text></View>
+                    <Text style={styles.contentInfoTxt}>{"    "+this.state.filmItem.authorInfo}</Text>
                 </View>
             </ScrollView>
         );
@@ -69,23 +69,23 @@ const styles = StyleSheet.create({
         // tintColor: '#b9b9b9',
         tintColor: '#000000',
     },
-    bookDPView: {
+    filmDPView: {
         paddingTop: 0.01 * Screen.height,
         alignItems: 'center',
         // backgroundColor: '#dddddd'
     },
-    bookInfoView: {
+    filmInfoView: {
         height: 0.2 * Screen.height,
         width: 0.92 * Screen.width,
         flexDirection: 'row',
         alignItems: 'center',
         // borderWidth: 1
     },
-    bookImg: {
+    filmImg: {
         height: 0.18 * Screen.height,
         width: 0.135 * Screen.height,
     },
-    bookInfo: {
+    filmInfo: {
         height: 0.18 * Screen.height,
         width: 0.92 * Screen.width - 0.135 * Screen.height,
         paddingLeft: 0.02 * Screen.width,

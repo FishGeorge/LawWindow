@@ -27,7 +27,11 @@ export default class LoginPage extends Component {
                         <TouchableOpacity activeOpacity={0.8}>
                             <View style={styles.thirdLoginBtn}>
                                 <Image
-                                    style={{height: 0.05 * Screen.height, width: 0.05 * Screen.height,}}
+                                    style={{
+                                        height: 0.05 * Screen.height,
+                                        width: 0.05 * Screen.height,
+                                        borderRadius: 0.035 * Screen.height
+                                    }}
                                     resizeMode='contain'
                                     source={require('../img/exampleImg/qq.jpg')}/>
                             </View>
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
         width: Screen.width,
         backgroundColor: Theme.backGroundColor,
         flexDirection: 'column-reverse',
-        alignItems:'center'
+        alignItems: 'center'
         // borderWidth: 1,
     },
     thirdLoginView: {
@@ -113,12 +117,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         // borderWidth: 1,
-        marginBottom:0.05*Screen.height,
+        marginBottom: 0.05 * Screen.height,
     },
     thirdLoginTxt: {
-        fontSize:18,
+        fontSize: 18,
         // color:
-        marginBottom:0.02*Screen.height,
+        marginBottom: 0.02 * Screen.height,
     },
     thirdLoginBtn: {
         height: 0.07 * Screen.height,

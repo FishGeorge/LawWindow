@@ -111,29 +111,34 @@ export default class TopicDetailPage extends Component {
 
 const styles = StyleSheet.create({
     topicDPView: {
-        alignItems: 'center',
-        backgroundColor: Theme.backGroundColor,
-    },
-    topicDetailView: {
         width: Screen.width,
         paddingLeft: 0.04 * Screen.width,
         paddingRight: 0.04 * Screen.width,
+        alignItems: 'center',
+        // borderWidth: 1
+        // backgroundColor: Theme.backGroundColor,
+    },
+    topicDetailView: {
         paddingBottom: 0.01 * Screen.height,
         marginBottom: 0.01 * Screen.height,
         backgroundColor: "#ffffff",
+        alignItems:'center'
     },
     topicTitleView: {
         width: 0.92 * Screen.width,
         height: 0.07 * Screen.height,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         // borderWidth: 1
     },
     titleTxt: {
-        fontSize: 19,
+        width: 0.92 * Screen.width,
+        fontSize: 20,
         color: '#000000',
         marginTop: 0.01 * Screen.height,
-        marginBottom: 0.01 * Screen.height,
+        // marginBottom: 0.01 * Screen.height,
+        borderBottomWidth: 1,
     },
     headImg: {
         height: 0.05 * Screen.height,
@@ -153,8 +158,6 @@ const styles = StyleSheet.create({
     },
     topicContentView: {
         width: 0.92 * Screen.width,
-        height: 0.07 * Screen.height,
-        marginBottom: 0.01 * Screen.height,
         marginLeft: 0.02 * Screen.width,
         // justifyContent: 'center',
         // borderWidth: 1
@@ -164,10 +167,9 @@ const styles = StyleSheet.create({
         color: '#000000',
     },
     rpListView: {
-        width: Screen.width,
-        paddingLeft: 0.04 * Screen.width,
-        paddingRight: 0.04 * Screen.width,
+        width: 0.92*Screen.width,
         backgroundColor: "#ffffff",
+        // borderWidth: 1
     },
     rpListHeaderView: {
         marginTop: 0.01 * Screen.height,
@@ -183,19 +185,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#dddddd',
     },
     rpView: {
-        width: Screen.width,
-        paddingBottom: 0.01 * Screen.height,
         marginBottom: 0.01 * Screen.height,
+        // borderWidth: 1
     },
     rpTitleView: {
         width: 0.92 * Screen.width,
         height: 0.07 * Screen.height,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        // borderWidth: 1
     },
     rpContentView: {
         flex:1,
+        width: 0.92 * Screen.width,
         marginBottom: 0.01 * Screen.height,
-        marginLeft: 0.02 * Screen.width,
+        paddingLeft: 0.02 * Screen.width,
+        paddingRight: 0.02 * Screen.width,
     }
 });

@@ -37,7 +37,16 @@ export default class TopicPage extends Component {
                 itemSrc = readingTopics;
                 break;
             case "Follow":
-                itemSrc = readingTopics;
+                let tmp = [{
+                    "headImg": "1",
+                    "author": "George",
+                    "time": "10.21 19:02",
+                    "title": "公司法务需要具备什么能力？",
+                    "content": "实务和理论悬殊还是挺大的，不一定过了法考审合同就严谨，法务和律师的思维方式不一样的。你更多的角色是公司员工，考虑事的角度不一样啊！",
+                    "apprNum": 0,
+                    "response": []
+                }];
+                itemSrc = tmp;
                 this.setState({isAddBtn: false});
                 break;
         }
@@ -91,8 +100,8 @@ export default class TopicPage extends Component {
                     </View>
                 </View>
                 <View style={styles.topicContentView}>
-                    <Text style={styles.titleTxt}>{item.title}</Text>
-                    <Text style={styles.contentTxt}>{item.content}</Text>
+                    <Text ellipsizeMode={'tail'} numberOfLines={1} style={styles.titleTxt}>{item.title}</Text>
+                    <Text ellipsizeMode={'tail'} numberOfLines={2} style={styles.contentTxt}>{item.content}</Text>
                 </View>
                 <View style={styles.funcBtnView}>
                     <Image style={styles.iconImg}
@@ -144,7 +153,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     topicListView: {
-        width: 0.92 * Screen.width
+        width: Screen.width,
+        paddingLeft: 0.04 * Screen.width,
+        paddingRight: 0.04 * Screen.width,
     },
     topicListHeaderView: {
         width: 0.92 * Screen.width,
@@ -164,6 +175,7 @@ const styles = StyleSheet.create({
         width: 0.92 * Screen.width,
         height: 0.07 * Screen.height,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         // borderWidth: 1
     },
@@ -187,7 +199,8 @@ const styles = StyleSheet.create({
         width: 0.92 * Screen.width,
         height: 0.1 * Screen.height,
         marginBottom: 0.01 * Screen.height,
-        marginLeft: 0.02 * Screen.width,
+        paddingLeft: 0.02 * Screen.width,
+        paddingRight: 0.02 * Screen.width,
         // justifyContent: 'center',
         // borderWidth: 1
     },
@@ -197,6 +210,7 @@ const styles = StyleSheet.create({
         // borderWidth: 1
     },
     contentTxt: {
+        height: 0.1 * Screen.height,
         fontSize: 16,
         color: '#777777',
     },

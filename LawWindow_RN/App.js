@@ -38,8 +38,8 @@ const AppStackNavigator = createSwitchNavigator(
         Main: MainPageTabNavigator,
     },
     {
-        // initialRouteName: "Splash",
-        initialRouteName: "Main",// 调试用
+        initialRouteName: "Splash",
+        // initialRouteName: "Main",// 调试用
         defaultNavigationOptions: ({navigation}) => {
             return {
                 headerStyle: {

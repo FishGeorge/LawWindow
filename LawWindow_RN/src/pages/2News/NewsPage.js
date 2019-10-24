@@ -170,9 +170,12 @@ export default class NewsPage extends Component {
         return (
             <TouchableOpacity activeOpacity={0.8} onPress={() => this._onIssueClick(item, index)}>
                 <View style={styles.issue}>
-                    <Image style={styles.issueImg}
-                           resizeMode='cover'
-                           source={imgArr['hotIssue' + item.img]}/>
+                    {/*<Image style={styles.issueImg}*/}
+                    {/*       resizeMode='cover'*/}
+                    {/*       source={imgArr['hotIssue' + item.img]}/>*/}
+                    <View style={styles.classTxtOutView}>
+                        <Text style={styles.classTxt}>{item.class}</Text>
+                    </View>
                     <Text style={styles.issueTxt}>{item.title}</Text>
                 </View>
             </TouchableOpacity>
@@ -333,7 +336,21 @@ const styles = StyleSheet.create({
         height: 0.1 * Screen.height,
         // justifyContent:'center'
     },
+    classTxtOutView: {
+        width: 0.26 * Screen.width,
+        height: 0.1 * Screen.height,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1
+    },
+    classTxt: {
+        width: 40,
+        fontSize: 20,
+        color: '#000000',
+        // borderWidth: 1
+    },
     issueTxt: {
+        width: 0.61 * Screen.width,
         fontSize: 16,
         color: '#000000',
         paddingLeft: 0.05 * Screen.width,

@@ -19,6 +19,7 @@ import BookDetailPage from "./3Study/BookDetailPage";
 import TopicDetailPage from "./1Community/TopicDetailPage";
 import NewTopicPage from "./1Community/NewTopicPage";
 import ExercisePage from "./3Study/ExercisePage";
+import FilmDetailPage from "./3Study/FilmDetailPage";
 
 const CommunityStack = createStackNavigator(
     {
@@ -60,6 +61,7 @@ const StudyStack = createStackNavigator(
         StudyTabNavigator: StudyTabNavigator,
         Exercise: ExercisePage,
         BookDetail: BookDetailPage,
+        FilmDetail: FilmDetailPage,
     },
     {
         initialRouteName: "StudyTabNavigator",
@@ -131,8 +133,8 @@ export default MainTabNavigator = createBottomTabNavigator(
         },
     },
     {
-        // initialRouteName: "News",
-        initialRouteName: "News",//调试用
+        initialRouteName: "News",
+        // initialRouteName: "Study",//调试用
         tabBarOptions: {
             activeTintColor: '#99dc00',
             inactiveTintColor: 'gray',

@@ -105,8 +105,8 @@ android {
         applicationId "com.lawwindow_rn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "0.2.0"
+        versionCode 7
+        versionName "0.3.0"
     }
     splits {
         abi {
@@ -145,6 +145,12 @@ android {
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
         }
+    }
+
+    // 修复 Could not download groovy-all.jar (org.codehaus.groovy:groovy-all:2.4.15)
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 

@@ -33,12 +33,6 @@ export default class MediaBookPage extends Component {
                 </View>
                 <ScrollView style={{flex: 1}}>
                     <FlatList
-                        // ItemSeparatorComponent={Platform.OS !== 'android' && ({highlighted}) => (
-                        //     <View style={[style.separator, highlighted && {marginLeft: 0}]} />
-                        //     )}
-                        // ListHeaderComponent={<View style={styles.hotIssueView}>
-                        //     <Text style={styles.hotIssueTxt}>热点追踪</Text>
-                        // </View>}
                         data={books}
                         renderItem={({item, index, separators}) => this._createBookItem(item, index, separators)}
                         ItemSeparatorComponent={this._createSeparator}

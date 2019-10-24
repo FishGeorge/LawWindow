@@ -53,6 +53,10 @@ export default class BookDetailPage extends Component {
                     <View style={styles.moduleHead}><Text style={styles.moduleHeadTxt}>{"内容简介"}</Text></View>
                     <Text style={styles.contentInfoTxt}>{"    "+this.state.bookItem.contentInfo}</Text>
                 </View>
+                <View style={styles.contentInfoView}>
+                    <View style={styles.moduleHead}><Text style={styles.moduleHeadTxt}>{"作者简介"}</Text></View>
+                    <Text style={styles.contentInfoTxt}>{"    "+this.state.bookItem.authorInfo}</Text>
+                </View>
             </ScrollView>
         );
     };
